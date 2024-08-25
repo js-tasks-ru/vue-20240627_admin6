@@ -46,15 +46,15 @@ export default defineComponent({
         <div class="radio-group" role="radiogroup">
           <div class="radio-group__button" v-for="radioButtonId in radioButtonMax">
             <input
-              id="\`meetup-id-\${radioButtonId}\`"
+              :id="\`meetup-id-\${radioButtonId}\`"
               class="radio-group__input"
               type="radio"
               name="meetupId"
               :value="radioButtonId"
               :checked="radioButtonCurrent === radioButtonId"
-              @click="radioButtonCurrent = radioButtonId"
+              @change="radioButtonCurrent = radioButtonId"
             />
-            <label for="\`meetup-id-\${radioButtonId}\`" class="radio-group__label">{{ radioButtonId }}</label>
+            <label :for="\`meetup-id-\${radioButtonId}\`" class="radio-group__label">{{ radioButtonId }}</label>
           </div>
         </div>
 
