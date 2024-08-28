@@ -64,12 +64,21 @@ export default defineComponent({
     }
   },
 
+  methods: {
+    handleDeleteEmail(indexValue) {
+      this.removeEmailByIndex(indexValue);
+    }
+  },
+
   template: `
     <div>
       <UiFormGroup>
         <UiInput v-model.trim="query" type="search" placeholder="Поиск" aria-label="Поиск" small />
       </UiFormGroup>
-      <EmailList :emails="markedEmails" />
+      <EmailList
+        :emails="markedEmails"
+        @deleteEmail="handleDeleteEmail"
+      />
     </div>
   `,
 })

@@ -15,6 +15,14 @@ export default defineComponent({
     },
   },
 
+  emits: ['deleteEmail'],
+
+  methods: {
+    clickDeleteEmail(indexValue) {
+      this.$emit('deleteEmail', indexValue);
+    }
+  },
+
   template: `
     <ul class="emails-list unstyled-list" aria-label="Emails">
       <EmailListItem
@@ -22,6 +30,7 @@ export default defineComponent({
         :key="email"
         :email="email"
         :marked="isMarked"
+        @deleteEmailItem="clickDeleteEmail(index)"
       />
     </ul>
   `,
