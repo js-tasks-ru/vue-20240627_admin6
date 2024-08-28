@@ -19,7 +19,7 @@ export default defineComponent({
 
   methods: {
     clickDeleteEmail() {
-      this.$emit('deleteEmailItem', this.email);
+      this.$emit('deleteEmailItem');
     }
   },
 
