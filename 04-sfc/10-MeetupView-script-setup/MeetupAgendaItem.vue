@@ -1,6 +1,13 @@
-<script>
-import { computed, defineComponent } from 'vue'
+<script setup>
+import { computed } from 'vue'
 import { UiIcon } from '@shgk/vue-course-ui'
+
+const props = defineProps({
+  agendaItem: {
+    type: Object,
+    required: true,
+  },
+});
 
 const agendaItemDefaultTitles = {
   registration: 'Регистрация',
@@ -11,7 +18,7 @@ const agendaItemDefaultTitles = {
   afterparty: 'Afterparty',
   talk: 'Доклад',
   other: 'Другое',
-}
+};
 
 const agendaItemIcons = {
   registration: 'key',
@@ -22,31 +29,10 @@ const agendaItemIcons = {
   closing: 'key',
   afterparty: 'cal-sm',
   other: 'cal-sm',
-}
+};
 
-export default defineComponent({
-  name: 'MeetupAgendaItem',
-
-  components: {
-    UiIcon,
-  },
-
-  props: {
-    agendaItem: {
-      type: Object,
-      required: true,
-    },
-  },
-
-  setup(props) {
-    const icon = computed(() => agendaItemIcons[props.agendaItem.type])
-    const title = computed(() => agendaItemDefaultTitles[props.agendaItem.type])
-    return {
-      icon,
-      title,
-    }
-  },
-})
+const icon = computed(() => agendaItemIcons[props.agendaItem.type])
+const title = computed(() => agendaItemDefaultTitles[props.agendaItem.type])
 </script>
 
 <template>
@@ -54,15 +40,15 @@ export default defineComponent({
     <div class="agenda-item__col">
       <UiIcon :icon="icon" />
     </div>
-    <div class="agenda-item__col">{{ agendaItem.startsAt }} - {{ agendaItem.endsAt }}</div>
+    <div class="agenda-item__col">{{ props.agendaItem.startsAt }} - {{ props.agendaItem.endsAt }}</div>
     <div class="agenda-item__col">
       <h3 class="agenda-item__title">{{ title }}</h3>
-      <p v-if="agendaItem.speaker" class="agenda-item__talk">
-        <span>{{ agendaItem.speaker }}</span>
+      <p v-if="props.agendaItem.speaker" class="agenda-item__talk">
+        <span>{{ props.agendaItem.speaker }}</span>
         <span class="agenda-item__dot"></span>
-        <span class="agenda-item__lang">{{ agendaItem.language }}</span>
+        <span class="agenda-item__lang">{{ props.agendaItem.language }}</span>
       </p>
-      <p v-if="agendaItem.description">{{ agendaItem.description }}</p>
+      <p v-if="props.agendaItem.description">{{ props.agendaItem.description }}</p>
     </div>
   </div>
 </template>
